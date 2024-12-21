@@ -1,0 +1,31 @@
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/*
+1
+2   6
+3   7   10
+4   8   11  13
+5   9   12  14  15
+ */
+//1
+
+public class Counter_5 {
+    public static void main(String[] args) {
+    int n=5;
+
+    for(int i=1;i<=n;i++)
+    {
+        int c=i;
+        for(int j=1;j<=i;j++)
+        {
+
+            System.out.print(c+"\t");
+            c=(c+ n)-j;
+        }
+        System.out.println();
+
+    }
+
+    }
+}
