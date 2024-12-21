@@ -1,0 +1,30 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/*
+
+1
+3   2
+6   5   4
+10  9   8   7
+15  14  13  12  11
+ */
+
+
+public class Counter_3 {
+    public static void main(String[] args) {
+        int n = 5;
+        int count = 1;     //count = 1 ,if counter sequence starts with '1'
+        for ( int i=1;i<=n;i++)
+        {
+            int c=count;                      // third variable
+            for(int j=i ;j>=1;j--)             //difference between columns are same i.e - 1
+            {
+                System.out.print(c +"\t");
+                c--;
+            }
+            System.out.println();
+            count+=i+1;             //for difference between (row-to-row) i.e - 2,3,4,5 (IN ASC ORDER)
+        }
+
+    }
+}
