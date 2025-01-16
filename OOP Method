@@ -1,0 +1,101 @@
+class Demo
+{
+    int findLastDigit(int n)
+    {
+        return n%10;
+    }
+//------------------------------
+    int findSecondLastDigit(int n)
+    {
+        return (n/10)%10;
+    }
+//---------------------------
+
+    int findFirstDigit(int n)
+    {
+        while(n>=10)
+            n/=10;
+        return n%10;
+    }
+//-----------------------------
+
+    int findSecondDigit(int n)
+    {
+        while(n>=100)
+            n/=10;
+        return n%10;
+
+    }
+    int findSumOfDigit(int n)
+    {
+        int sum=0;
+        while(n!=0)
+        {
+            sum+=n%10;
+            n/=10;
+        }
+        return sum;
+    }
+//---------------------------
+
+    double findAvgOfDigit(int n)
+    {
+        double avg=0;
+        int count =0;
+        while(n!=0)
+        {
+            avg+=n%10;
+            count++;
+            n/=10;
+        }
+        return avg/count;
+
+    }
+//-------------------------------
+
+    int shiftFirstToLast(int n)      //1234
+    {
+        int length=1,first=n;        //1
+        while(first >= 10)           //(1234 >= 10)
+        {
+            length *=10;            //1*10
+            first /=10;             // 1
+        }
+        n%=length;                   //1234 %1000 =234            
+        n*=10;                         // 234*10 =2340
+        n+=first;                       //2340+1 = 2341
+        return n;                       //2341
+    }
+//-----------------------------------
+    int shiftLastToFirst(int n) // 1234
+    {
+        int length=1, rem;          //1
+        int last = n%10;           //4
+        rem=n/10;                   //123
+        while(n>=10)               //1234>10
+        {
+            n/=10;                     // 1234/10=123
+            length*=10;               //1*10
+        }
+
+        return last*length + rem;       // 4*1000+123
+
+    }
+} 
+-------------------------------------------------------
+
+
+
+class MainClass
+{
+    public static void main(String args[])
+    {
+        Demo d1= new Demo();
+        System.out.println(d1.findLastDigit(12345));
+        System.out.println(d1.findSecondLastDigit(12345));
+        System.out.println(d1.findFirstDigit(12345));
+        System.out.println(d1.findSecondDigit(54321));
+        System.out.println(d1.findSumOfDigit(12345));
+        System.out.println(d1.shiftLastToFirst(12345));
+    }
+}
