@@ -99,3 +99,34 @@ class MainClass
         System.out.println(d1.shiftLastToFirst(12345));
     }
 }
+
+
+----------------------------------------------------------------------------------------
+
+// WAP TO Shift degit last to first
+
+class MainClass1
+{
+public static void main(String args[])
+{
+Demo1 d1=new Demo1();
+System.out.println(d1.shiftLastToFirst(1234));
+}
+}
+
+___________________________
+class Demo1
+{
+int shiftLastToFirst(int n)
+{
+int last = n%10,length=1,temp=n/10;
+while(temp!=0)
+{
+length*=10;
+temp/=10;
+}
+last*=length;
+last+=n/10;
+return last;
+}
+}
