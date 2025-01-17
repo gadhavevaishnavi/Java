@@ -103,7 +103,8 @@ class MainClass
 
 ----------------------------------------------------------------------------------------
 
-// WAP TO Shift degit last to first
+****** //   WAP TO Shift degit last to first    ******
+----------------------------------------------------------------------------------
 
 class MainClass1
 {
@@ -114,7 +115,8 @@ System.out.println(d1.shiftLastToFirst(1234));
 }
 }
 
-___________________________
+// _________________________________
+
 class Demo1
 {
 int shiftLastToFirst(int n)
