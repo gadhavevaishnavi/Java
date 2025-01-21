@@ -164,7 +164,26 @@ class MainClass2
 		System.out.println(d2.addSumAtLast(1234));
 	}
 }
+---------------------------------------------
 
+// //Write a method to reverse the given number
+
+class Demo2
+{
+    int reverseNumber(int n)
+    {
+        int sum=0;
+        while(n!=0)
+        {
+            sum*=10;
+            sum+=n%10;
+            n/=10;
+        }
+        return sum;
+    }
+}
+
+---------------------------------------------
 
 
 
