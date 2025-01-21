@@ -101,10 +101,10 @@ class MainClass
 }
 
 
-----------------------------------------------------------------------------------------
+---------------------------------------------------------
 
 ****** //   WAP TO Shift degit last to first    ******
-----------------------------------------------------------------------------------
+---------------------------------------------------------
 
 class MainClass1
 {
@@ -132,3 +132,61 @@ last+=n/10;
 return last;
 }
 }
+
+
+------------------------------
+
+//Write a method to add Sum of digit At Last
+
+class Demo2
+{
+	int addSumAtLast(int n)
+	{
+	int sum=0,temp=n;
+	while (temp!=0)
+	{
+		sum +=temp%10;
+		temp/=10;	
+	}
+	if(sum<10)
+		n=n*10 ;
+	else
+		 n=n*100;
+	return sum + n;
+ }
+}
+----------
+class MainClass2
+{
+	public static void main(String args[])
+	{
+		Demo2 d2=new Demo2();
+		System.out.println(d2.addSumAtLast(1234));
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
