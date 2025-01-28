@@ -28,3 +28,49 @@ d2.display();
 
 }
 ________________
+
+class Singleton {
+   
+    private static Singleton d1 = new Singleton();    // This instance is created when the class is loaded, ensuring that only one instance exists.
+    int a, b;
+  
+    private Singleton() {}           // This constructor is private, so no other class can create a new instance of Singleton.
+
+    static Singleton getObject()     // This method returns the single instance of the Singleton class.
+    {            
+        return d1;     // Return the already created instance
+    }
+
+    
+    // This method prints the current values of the instance variables a and b.
+    void display() {
+        System.out.println("a=" + a + " b=" + b);
+    }
+}
+
+_________________________________
+
+class MainSingleton {
+    public static void main(String args[]) {
+        
+     
+        Singleton d1 = Singleton.getObject();        // This calls the static method getObject() from the Singleton class to retrieve the single instance.
+
+       
+        d1.a = 10; // Setting the value of a to 10
+        d1.b = 20; // Setting the value of b to 20
+
+        
+       
+        d1.display();   
+// Output: a=10 b=20 
+        
+       
+      
+        Singleton d2 = Singleton.getObject();        // This retrieves the same singleton instance again, but this time it is referenced by the variable d2.
+
+  
+        d2.display(); // Output: a=10 b=20          // This calls the display() method on the d2 instance. Since d1 and d2 point to the same instance,
+                                                   // the output will reflect the values set earlier.
+    }
+}
