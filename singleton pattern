@@ -1,0 +1,30 @@
+class Singleton
+{
+private static Singleton d1=new Singleton();
+int a,b;
+void display()
+{
+System.out.println("a="+a+" b="+b);
+}
+Singleton(){}
+static Singleton getObject()
+{
+return d1;
+}
+}
+_______________________
+class MainSingleton
+{
+public static void main(String args[])
+{
+Singleton d1=Singleton.getObject();
+d1.a=10;
+d1.b=20;
+d1.display();
+Singleton d2=Singleton.getObject();
+
+d2.display();
+}
+
+}
+________________
