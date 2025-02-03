@@ -57,3 +57,94 @@ import java.util.Arrays;
     }
 
 }
+
+_________________________________________
+REPLACE ODD ELEMENT WITH THEIR FIRST DIGIT
+/*
+i/p-{10,87,12,53,14};
+o/p-
+10
+8
+12
+5
+14
+*/
+class OddReplace{
+    public static void main(String[] args) {
+        int a[]={10,87,12,53,14};
+        for(int i=0;i<a.length;i++)
+        {
+            if(a[i]%2!=0){
+		
+		while(a[i]>10)
+			a[i]/=10;
+
+         }
+	 System.out.println(a[i]);
+    }}
+}
+
+_________________________________________________________________
+DISPLAY ELEMENTS WHICH ARE GREATER THAN THEIR AVERAGE NUMBER
+
+/*
+i/p-int a[]={1,2,3,4,5};
+o/p-
+Greater Elements:
+4
+5
+*/
+
+class Avg{
+    public static void main(String[] args) {
+        int a[]={1,2,3,4,5};
+        double avg=0;
+
+        for(int i=0;i<a.length;i++)
+        {
+            avg+=a[i];
+            //avg/=a.length;
+        }avg/=a.length;
+        System.out.println("Greater Elements: ");
+        for(int i=0;i<a.length;i++)
+        {
+            if (a[i] > avg)
+                System.out.println(a[i]);
+        }
+    }
+}
+
+___________________________________________________________
+
+Average of odd and even elements in array
+
+/*
+i/p-{17,16,21,15,22,10,5,12,25,14};
+o/p-
+odd Average =16.6
+Even Average =14.8
+ */
+
+class ArrayOddEven
+ {
+public static void main(String[] args) 
+{
+int a[]={17,16,21,15,22,10,5,12,25,14};
+double oddavg=0;
+double evenavg =0;
+int oddcount=0;
+for(int i=0; i<a.length;i++)
+    if(a[i]%2!=0)
+    {
+        oddavg+= a[i];
+       oddcount++;
+    }
+    else
+        evenavg+=a[i];
+oddavg/=oddcount;
+evenavg/=(a.length - oddcount);
+System.out.println("odd Average =" +oddavg);
+System.out.println("Even Average =" +evenavg);
+
+    }
+}
