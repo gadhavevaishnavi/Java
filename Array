@@ -148,3 +148,89 @@ System.out.println("Even Average =" +evenavg);
 
     }
 }
+____________________________________________________
+/*
+SHIFT 1st ELEMENT TO THE LAST FROM ARRAY
+
+i/p-{1,2,3,4,5,6,7,8}
+O/P-Avg=4.0
+*/
+import java.util.Arrays;
+class FirstToLast
+{
+public static void main(String args[])
+{
+	int a[]= {10,20,30,40,50};
+	int temp=a[0];
+	for(int i=1;i<a.length;i++)
+	{
+		a[i-1]=a[i];
+		a[a.length-1]=temp;
+	}
+	System.out.println(Arrays.toString(a));
+   }
+}
+________________________________________________________________
+
+/*
+WAP TO AVERAGE OF ODD ELEMENTS OF ARRAY
+
+i/p-{1,2,3,4,5,6,7,8}
+O/P-Avg=4.0
+*/
+
+class OddAvg
+{
+public static void main(String args[])
+{
+	int a[]= {1,2,3,4,5,6,7,8};
+	double avg=0;
+	int count=0;
+	for(int i=0;i<a.length;i++)
+	{
+		 if(a[i]%2!=0)
+		{	
+			avg+=a[i];    //0+1=1+3=4+5=9+7=16
+			count++;      // 4     
+		}
+ 	}
+	avg/=count;    //16/4=4 
+	System.out.println("Avg="+avg);
+   }
+}
+
+__________________________________________________
+
+/*
+WAP TO REPLACE EVEN ELEMENTS WITH THEIR SUM
+
+i/p-{11,23,34,45,56,67,76,2}
+o/p-[11, 23, 7, 45, 11, 67, 13, 2]
+
+*/
+import java.util.Arrays;
+class ReplaceESum
+{
+public static void main(String args[])
+{
+	int a[]= {11,23,34,45,56,67,76,2};
+	for(int i=0;i<a.length;i++)
+	{
+		if(a[i]%2==0)
+		{	
+			int sum=0;
+			while(a[i]!=0)  //34 !=0
+			{
+				sum+=a[i]%10;   //0+4
+				a[i]/=10;	//3
+			}
+		a[i]=sum;
+		}
+	}
+ 	System.out.println(Arrays.toString(a));
+}
+}
+
+
+
+
