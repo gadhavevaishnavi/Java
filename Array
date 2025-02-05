@@ -281,3 +281,80 @@ public static void main(String args[])
    }
 }
 
+----__________________________________________
+
+// CREATE ARRAY USING-
+
+//1- new Keyword
+
+import java.util.Arrays;
+class Array1
+{
+    public static void main(String args[])
+    {
+        int a[]= new int[5];
+        a[0]=10;
+        a[1]=20;
+        a[4]=30;
+        System.out.println(Arrays.toString(a));  //[10, 20, 0, 0, 30]
+    }
+}
+
+__________________________________________________________
+//2- by using referance
+
+import java.util.Arrays;
+class Array2
+{
+public static void main(String args[])
+{
+	int a[]={10,20,30,40};
+	int b[]=a;
+	System.out.println(Arrays.toString(b));  //[10, 20, 30, 40]
+	System.out.println(a==b);  //true  bcs it compare memory
+}
+
+}
+__________________________________________________________
+
+// 3- BY USING STATIC WAY
+
+import java.util.Arrays;
+class Array3
+{
+    public static void main(String args[])   //FOR Multiple arguments
+    {
+        int a[]={1,2,3,4,5};
+        int b[]={1,2,3,4,5};w/
+        System.out.println(a);
+        // it returns in hashcode in hexadecimal representation [I@2f92e0f4]
+
+        System.out.println(Arrays.toString(a));  //[1, 2, 3, 4, 5]
+        System.out.println(Arrays.toString(b));  //[1, 2, 3, 4, 5]
+        System.out.println(a==b);  //false (bcs its memory is different hence it compare values )
+    }
+}
+
+_____________________________________________________________
+
+// 3- BY COPY OF ARRAY
+
+import java.util.Arrays;
+class Array4
+{
+    public static void main(String args[])   //FOR Multiple arguments
+    {
+        int a[]={1,2,3,4,5};
+	int b[]=new int[a.length];
+  // int b[]=Arrays.copyOf(a,a.length);
+	for(int i=0;i<a.length;i++)
+	{
+	b[i]=a[i];
+	}
+System.out.println(Arrays.toString(a));     //[1, 2, 3, 4, 5]
+System.out.println(Arrays.toString(b));     //[1, 2, 3, 4, 5]
+     System.out.println(a==b);   //false (bcs it copy by only values)
+    
+
+ }
+}
