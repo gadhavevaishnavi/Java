@@ -521,3 +521,65 @@ System.out.println("--Jagged Array --");
 }
 
 ___________________________________________________________
+
+
+/*
+
+--Your Answers as below--
+
+Addition : 20
+multiplication :1000
+*/
+
+import java.util.Arrays;
+class ClaInput
+{
+public static void main(String args[])
+{
+ 
+int a= Integer.parseInt(args[0]);
+int b= Integer.parseInt(args[1]);
+int c= Integer.parseInt(args[2]);
+
+System.out.println("--Your Answers as below--");
+ 
+System.out.println("Addition : "+(a+b));
+ System.out.println("multiplication :"+(a*b*c));
+ 
+}
+
+}
+____________________________________________________________________
+
+/*
+
+Enter Number :
+88
+Enter Number :
+76
+Addition : 164
+
+ */
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.Arrays;
+class BufferR1
+{
+    public static void main(String args[]) throws IOException
+    {
+
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader (isr);
+
+        System.out.println("Enter Number :");
+        int a= Integer.parseInt(br.readLine());
+
+        System.out.println("Enter Number :");
+        int b= Integer.parseInt(br.readLine());
+
+        System.out.println("Addition : "+(a+b));
+
+    }
+
+}
