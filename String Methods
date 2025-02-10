@@ -1,0 +1,92 @@
+//StringBuilder Methods
+/*
+hello my dear Sejal Feran
+ hello Welcome my dear Sejal Feran
+ hellome my dear Sejal Feran
+nareF lajeS raed ym emolleh
+Vaishnavi  Pyaari
+*/
+
+public class SBufferMethod 
+{
+  public static void main(String args[]) 
+{
+    String s1 = " hello my dear Sejal";
+    String s2 = "Feran";
+  
+  StringBuilder sb = new StringBuilder(s1);
+ // System.out.println( sb.append("Feran ")); // hello my dear SejalFeran 
+ System.out.println( sb.append(" "+ s2)); // hello my dear Sejal Feran
+  
+   
+   System.out.println( sb.insert(6," Welcome")); // hello Welcome my dear Sejal Feran
+  
+    
+   System.out.println( sb.delete(5, 11)); // hellome my dear Sejal Feran
+  
+   
+    System.out.println( sb.reverse()); //nareF lajeS raed ym emolleh 
+   
+  String s3 = "Vaishnavi ";
+  
+ StringBuilder sb1 = new StringBuilder(s3);
+ sb1.append(" Pyaari");
+ System.out.println(sb1); //Vaishnavi  Pyaari
+ // String result =sb1.toString();
+ // System.out.println(result);  //Vaishnavi  Pyaari
+  }
+}
+
+____________________________________________________________________________
+
+// Java Math Methods
+/*
+8.0
+64
+0.7381962723217685
+21
+20
+*/
+
+class MathMethod
+ {
+  public static void main(String[] args)
+ {
+    System.out.println(Math.sqrt(64));  
+        System.out.println(Math.abs(-64));   //Absolute (+ve)
+            System.out.println(Math.random());  //random in berween 0 and 1
+                System.out.println(Math.max(20,21));  
+                    System.out.println(Math.min(20,21));  
+    
+  }
+}
+__________________________________________________________________
+
+//String Methods
+public class StringMethods
+{
+  public static void main(String args[]) 
+{
+    String s1 = "India";
+    String s2 = "Is My Country";
+    String s3 =    "Welcome to geeksforgeeks";
+    System.out.println(s1 + " " + s2);//India Is My Country
+    
+     System.out.println(s1.charAt(4)); // a (char at ith index)
+     
+    System.out.println(s2.substring(2)); //( My Country)return substring from ith index character to end
+   
+    System.out.println(s2.substring(0,4)); // (Is M) return substring from ith index to j-1  here 0-starting pt & 4-ending pt
+     System.out.println(s2.substring(0)); //Is My Country 
+     
+        System.out.println(s2.indexOf('M')); // 3 (Return index(also count space))
+     
+  System.out.println(s3.length());  //24
+     System.out.println(s3.indexOf('g'));  //11
+        System.out.println(s3.indexOf('g',13));  //19 
+        
+    System.out.print(s2.lastIndexOf('n'));//9
+    
+  
+  }
+}
