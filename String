@@ -1,0 +1,175 @@
+class StringCreation
+{
+    public static void main(String[] args) 
+{
+
+        //How to create String
+        //1-by using new keyword
+        String s1 = new String("Hello");
+        System.out.println(s1);
+
+        //2-by using literal way
+        String s2 = "World";
+        System.out.println(s2);
+
+        //3-by using char[] array
+        // char c[]={'I','n','d','i','a'};
+        //  System.out.println(c);   //We can return char[] directily into the SOP
+        char c[]={'I','n','d','i','a'};
+        String s3 = new String(c);    //String constructor takes the character array and converts it into a string representation.
+        System.out.println(s3);//India
+        System.out.println(c);//India
+
+//4-By using anonymous way
+        int size = "India".length();
+        System.out.println(size);  //5
+
+        char c1 = new String ("India").charAt(2);
+        System.out.println(c1); //d
+
+        System.out.println("International");
+
+    }
+}
+
+__________________________________________________
+
+public class StringSBSbf
+{
+    public static void main(String[] args) 
+{
+
+        StringBuilder sb = new StringBuilder("India");
+        System.out.println(sb); //India
+
+     //   append() method used in StringBuilder and StringBuffer to concatinate two string instead of concat()
+        sb.append(" Country");
+        System.out.println(sb);//India Country
+
+
+        StringBuffer sbf = new StringBuffer("India");
+        System.out.println(sbf); //India
+
+        //   append() method used in StringBuilder and StringBuffer to concatinate two string instead of concat()
+        sbf.append(" Is My Country");
+        System.out.println(sbf);//India Is My Country
+    }
+}
+______________________________________________________
+
+/*
+input- International
+output- I13n12t11e10r9n8a7t6i5o4n3a2l1
+ */
+public class Vowel_1
+{
+    public static void main(String[] args)
+ {
+
+        String s1 = "International";
+    /*
+        //METHOD-I
+
+        StringBuilder sb = new StringBuilder();
+        int count =s1.length();
+         for(int i=0;i<s1.length();i++)
+
+             System.out.print(s1.charAt(i)+""+ count--); //I13n12t11e10r9n8a7t6i5o4n3a2l1
+     */
+        StringBuilder sb =new StringBuilder(s1);
+        int count =0;
+        for(int i=sb.length()-1;i>=0;i--)
+            sb.insert(i+1, ++ count);
+        System.out.println(sb);
+    }
+}
+
+____________________________________________________________
+
+
+public class SLastToFirst
+ {
+    public static void main(String[] args) 
+{
+
+        String s1 = "India";
+       /* // METHOS=I-
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(s1.charAt(s1.length()-1)); //a
+        sb.append(s1.substring(0,s1.length()-1)); //aIndi
+        System.out.println(sb);
+
+        //METHOD-II
+
+        StringBuilder sb = new StringBuilder(s1);
+      sb.insert(0,sb.charAt(s1.length()-1));
+      sb.deleteCharAt(sb.length()-1);
+        System.out.println(sb);
+*/
+        //METHOD-III
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(s1.charAt(s1.length()-1));
+        for(int i=0;i<s1.length()-1;i++)
+            sb.append(s1.charAt(i));
+
+        System.out.println(sb);
+    }
+}
+_________________________________________________________
+
+public class LastToFirst
+{
+    public static void main(String[] args) {
+	String s1="India";
+ 
+	//METHOD-I
+
+      /*   StringBuilder sb= new StringBuilder();
+       for(int i=1;i<s1.length();i++)
+        {
+            sb.append(s1.charAt(i));
+        }
+
+        sb.append(s1.charAt(0));
+       System.out.println(sb);
+
+
+        //METHOD-II
+
+        StringBuilder sb= new StringBuilder();
+        sb.append(s1.substring(1));
+        sb.append(s1.charAt(0));
+        System.out.println(sb);
+
+        //METHOD-III
+        StringBuilder sb= new StringBuilder(s1.substring(1));
+        sb.append(s1.charAt(0));
+        System.out.println(sb);
+
+
+        //METHOD-IV-
+
+    String s2 = " ";
+        StringBuilder sb= new StringBuilder();
+        for(int i=1;i<s1.length();i++)
+            s2 +=s1.charAt(i);
+        s2+=s1.charAt(0);
+        System.out.println(s2);
+      */
+
+	
+        //METHOD-IV-
+        StringBuilder sb= new StringBuilder(s1);
+   //    char c = s1.charAt(0);
+        sb.deleteCharAt(0);
+        sb.append(s1.charAt(0));
+
+        //System.out.println(c);
+        System.out.println(sb);
+    }
+
+}
+
+_____________________________________________________
