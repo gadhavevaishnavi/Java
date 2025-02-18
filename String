@@ -326,3 +326,21 @@ public class Main {
         System.out.println(sb);
     }
 }
+_____________________________________________________
+//COUNT WORD IN STRING
+/*
+i/p- Hello i am java Developer
+o/p- 5
+ */
+public class Main {
+    public static void main(String[] args) {
+
+        String s1 = "Hello i am java Developer";
+        String s2[] = s1.split(" ");
+        int count =0;
+        for(int i=0;i<s2.length;i++)
+            if(s2[i].length()!=0) //To count empty spaces,length of empty string =0,so it  count only length >0
+                count++;
+            System.out.println(count);  //5
+    }
+}
