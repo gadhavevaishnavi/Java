@@ -1,0 +1,40 @@
+/*
+
+ ** PACKAGE **
+-folder os subdirectory ,Used to store classes & Interfaces.
+-By using package, we can organize application.
+-If application is well organized, we can access any application easily.
+-Create package-package.- keyword
+-package name should be in smallcase.
+-package class compile using   ---javac -d • Demo-java ---
+- we can use import keyword To use package class with qualified name.
+qualifires qualified Name means package Hame + class name
+eg- import a.b.c.d.e.Demo;
+*/
+package A.B.C;
+public class PackageDemo  //to accessed data from outside package (variable , method, and Class)
+
+{
+	public int a=10;
+	public void display()
+	{
+		System.out.println("--This is Example of Package--");	
+		System.out.println("a: "+a);
+	}
+}
+
+import A.B.C.PackageDemo;
+
+public class MainPackage 
+{
+    public static void main(String[] args)
+ 	{
+    	   PackageDemo pd = new PackageDemo();
+	   pd.a=50;
+           pd.display(); 
+
+	   A.B.C.PackageDemo pd1= new A.B.C.PackageDemo();
+	   pd1.a=100;
+	   pd1.display();
+   	 }
+}
