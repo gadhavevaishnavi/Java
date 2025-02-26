@@ -25,6 +25,8 @@ class MainClass
         Demo d1 = new Demo();
                   ^
 /*
+------------------------------------------------------
+
 -NEED TO OVERRIDE ABSTRACT METHOD IN CHILD CLASS 
 -USE extend  keyword
 -NEED TO INHERIT
@@ -56,7 +58,57 @@ class MainClass
 d1.m2();
     }
 }
+------------------------------------------------------------------------------
 
-//Abstract CLASS can have constructor too
+//Abstract CLASS can have constructor too,become it 0 to 100 implemented class
+1-variable initialization
+2-implementation 0 to 100
+3-inheritance Super Keyword(silent)
+
+abstract  class Demo {
+
+    void m1()
+    {
+        System.out.println("m1 method of Demo");
+    }
+    abstract void m2();
+    Demo()
+    {
+        System.out.println("Default Consructor of Demo");
+    }
+    Demo(int a)
+    {
+        System.out.println("User-Defined Constructor of Demo");
+    }
+}
+
+
+class DemoClass extends Demo
+{
+ DemoClass()
+    {
+        super(50);
+    }
+    void m2()
+    {
+        System.out.println("m2 method of DemoClass");
+    }
+   
+}
+
+class MainClass
+{
+    public static void main(String args[])
+    {
+        DemoClass d1 = new DemoClass();
+        d1.m2();
+    }
+}
+/*
+o/p-
+//User-Defined Constructor of Demo
+m2 method of DemoClass
+
+*/
 
 
