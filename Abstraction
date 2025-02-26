@@ -24,3 +24,37 @@ class MainClass
 //error :Demo is abstract; cannot be instantiated
         Demo d1 = new Demo();
                   ^
+/*
+-NEED TO OVERRIDE ABSTRACT METHOD IN CHILD CLASS 
+-USE extend  keyword
+-NEED TO INHERIT
+*/
+abstract class Demo
+ {
+
+    void m1()   //method Signature (complete/non-abstract method)
+    {
+        System.out.println("m1 method of Demo");
+    }
+    abstract void m2();  //incomplete/unimplemented
+}
+
+class DemoClass extends Demo
+{
+    void m2()
+    {
+        System.out.println("m2 method of DemoClass");
+    }
+
+}
+
+class MainClass
+{
+    public static void main(String args[])
+    {
+        DemoClass d1 = new DemoClass();
+d1.m2();
+    }
+}
+
+
