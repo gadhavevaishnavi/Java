@@ -1,0 +1,26 @@
+abstract class Demo
+ {
+
+    void m1()  //method Signature (complete/non-abstract method)
+    {
+        System.out.println("m1 method of Demo");
+    }
+    abstract void m2()  //incomplete/unimplemented
+
+}
+
+//error: ';' or '{' expected
+    abstract void m2()
+                      ^
+
+class MainClass
+{
+    public static void main(String args[])
+    {
+        Demo d1 = new Demo();
+    }
+}
+
+//error :Demo is abstract; cannot be instantiated
+        Demo d1 = new Demo();
+                  ^
