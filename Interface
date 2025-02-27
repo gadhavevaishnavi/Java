@@ -1,0 +1,45 @@
+// DEFAULT METHOD
+
+
+interface Demo1
+{
+   default void m1()
+   {
+       System.out.println("m1 method of Demo1");
+   }
+   default void m3()
+   {
+       System.out.println("m3 method of Demo1");
+   }
+}
+
+interface Demo2
+{
+   default void m2()
+   {
+       System.out.println("m2 method of Demo2");
+   }
+   default void m3()
+   {
+       System.out.println("m3 method of Demo2");
+   }
+}
+
+class DemoClass implements Demo1,Demo2
+{
+    public void m3()
+    {
+        System.out.println("m3 methof of DemoClass");
+        Demo1.super.m3();  // to call perticular class where similar method exist
+        Demo2.super.m3();
+    }
+}
+
+class MainClass
+{
+    public static void main(String args[])
+    {
+        DemoClass d1 = new DemoClass();
+        d1.m3();
+    }
+}
