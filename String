@@ -494,3 +494,79 @@ public class Main {
         System.out.println(sb);
     }
 }
+
+
+// FIND FIST NON-REPEATING CHARACTER IN STRING
+METHOD :1 
+public class FirstNonRepeatingChar {
+    public static void main(String[] args) {
+        String str = "programming";
+        char result = '_';
+
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            int count = 0;
+
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) == c) {
+                    count++;
+                }
+            }
+
+            if (count == 1) {
+                result = c;
+                break;
+            }
+        }
+
+        System.out.println("First non-repeating character: " + result);
+    }
+}
+
+//METHOD: 2
+
+ class FirstNonRepeatingChar {
+    public static void main(String[] args) {
+        String str = "programminpg";
+
+        for (int i = 0; i < str.length()-1; i++) {
+            int count = 0;
+
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(i) == str.charAt(j)) {
+                    count++;
+                }
+            }
+            if (count == 1)
+            {
+               System.out.println(str.charAt(i));
+                break;
+            }
+        }
+    }
+}
+
+METHOD :3
+
+
+ class FirstNonRepeatingChar
+{
+    public static void main(String[] args)
+    {
+        String str = "swiss";
+        char result = '_';
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            char c = str.charAt(i);
+            if (str.indexOf(c) == str.lastIndexOf(c))
+            {
+                result = c;
+
+                break;
+            }
+        }
+
+        System.out.println("First non-repeating character: " + result);
+    }
+}
