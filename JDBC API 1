@@ -1,0 +1,271 @@
+package com.model;
+
+public class Student {
+	private int id;
+	private String name;
+	private String city;
+	private double percentage;
+	@Override
+	//setter & getter
+	//toString
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", city=" + city + ", percentage=" + percentage + "]";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public double getPercentage() {
+		return percentage;
+	}
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
+	}
+
+}
+
+
+---------
+
+package com.Dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.model.Student;
+public class StudentDao {
+	public int insertStudent(Student s)
+	{
+		int result =0 ;   //bcs method is DML ,it return int value. to represent it we need variable.
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/jap76","root","Vaishu@283");
+			String sql ="insert into student(name,city,percentage)values(?,?,?)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, s.getName());
+			pst.setString(2, s.getCity());
+			pst.setDouble(3, s.getPercentage());
+			result = pst.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	//-------------deleteStudentById-------------------
+	public int deleteStudentById(int id)
+	{
+		int result= 0;
+		Connection con = null;
+		PreparedStatement pst = null;
+		
+		//load driver
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//create connection
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/jap76","root","Vaishu@283");	//create Query
+			String sql = "delete from student where id = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			result = pst.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+					e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
+	//  ---------------findStudentById----------------
+	public Student findStudentById(int id)
+	{
+		Student s=null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs =null;
+		//load driver
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//create connection
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/jap76","root","Vaishu@283");	//create Query
+			String sql = "select id,name,city,percentage from student where id= ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			rs = pst.executeQuery();
+			while(rs.next())  // to find records exist or not
+			{		
+				s=new Student();  // if records are found then and then only create object of student
+				s.setId(rs.getInt("id"));
+				s.setName(rs.getString("name"));
+				s.setCity(rs.getString("city"));
+				s.setPercentage(rs.getDouble("percentage"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+					e.printStackTrace();
+			}
+		}
+		return s;
+	}
+
+	//---------findAllStudent-----------------
+	
+	public List<Student> findAllStudent()
+	{
+		List<Student> list = new ArrayList();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs =null;
+		//load driver
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//create connection
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/jap76","root","Vaishu@283");	//create Query
+			String sql = "select id,name,city,percentage from student";
+			pst = con.prepareStatement(sql);
+		
+			rs = pst.executeQuery();
+			while(rs.next())  // to find records exist or not
+			{		
+				Student s=new Student();  // if records are found then and then only create object of student
+				s.setId(rs.getInt("id"));
+				s.setName(rs.getString("name"));
+				s.setCity(rs.getString("city"));
+				s.setPercentage(rs.getDouble("percentage"));
+				list.add(s);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+					e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	//--------updateStudent---------
+	public int updateStudent(Student s)
+	{
+		int result=0;
+		Connection con= null;
+		PreparedStatement pst =null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap76","root","Vaishu@283");
+			String sql = "update student set name =? ,city=?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, s.getName());
+			pst.setString(2, s.getCity());
+			
+			result = pst.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+		}finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	}
+	--------------
+package com.demo;
+
+import java.util.List;
+
+import com.Dao.StudentDao;
+import com.model.Student;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	StudentDao sd = new StudentDao();
+    	/*
+    	 //------------insertStudent------------
+    	
+    	Student s1 = new Student();
+    
+    	s1.setName("Vikas Patil ");
+    	s1.setCity("Pune");
+    	s1.setPercentage(82.40);
+    	int result = sd.insertStudent(s1);
+    		 
+    	//---------deleteStudentById---------
+	 
+    	int result = sd.deleteStudentById(1);
+    	System.out.println(result);
+    	
+    	//------------findStudentById-----------
+    	Student student = sd.findStudentById(3);
+    	System.out.println(student);   //Student [id=3, name=Vikas Patil , city=Pune, percentage=82.4]
+    	
+    	//------findAllStudent----------
+    	
+    	List<Student> list= sd.findAllStudent();
+    	for(Student s:list)
+    		System.out.println(s);     //Student [id=2, name=Shital Patil , city=Nashik, percentage=92.4]
+    									//Student [id=3, name=Vikas Patil , city=Pune, percentage=82.4]
+    	*/
+    	Student s =sd.findStudentById(2);
+    	s.setName(" e Feren");
+    
+    	System.out.println(sd.updateStudent(s));
+    	
+    }
+}
+
+	
+
