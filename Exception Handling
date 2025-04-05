@@ -1,0 +1,200 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("program started.....");
+        String s1[] = {"123","234","235","ABC"};
+        int num =0;
+        /*
+        try {
+            num = Integer.parseInt(s1[3].substring(4));
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println(e);
+            System.out.println("Catch 1 called");
+        }catch (NullPointerException e) {
+            System.out.println(e);
+            System.out.println("Catch 2 called");
+        }catch(NumberFormatException e){
+            System.out.println(e);
+            System.out.println("Catch 3 called");
+        }catch(Exception e) {                // super catch
+            System.out.println(e);
+            System.out.println("Catch 4 called");
+        }
+        */
+try {
+    num = Integer.parseInt(s1[3]);
+}catch(ArrayIndexOutOfBoundsException | NumberFormatException | NullPointerException e){
+    System.out.println(e);
+} finally {               //invoke implicitly ,no matter exception occured or handled
+    System.out.println("finally block executed ");
+}
+            System.out.println("Program ended.......");
+    }
+}
+//program started.....
+//java.lang.NumberFormatException: For input string: "ABC"
+//finally block executed
+//Program ended.......
+
+----------------------------------------------
+
+class MainClass {
+    public static void main(String[] args) {
+        int a=10;
+        int b=a;
+        System.out.println("Program Started....");
+
+        new MainClass(); // Creates a new instance of MainClass
+        System.gc(); // Suggests that the Java Virtual Machine (JVM) perform garbage collection
+        System.out.println("Program ended....");
+    }
+
+    @Override
+    public void finalize()
+    {
+        System.out.println("Finalize method called");
+    }
+}
+-------------------------------------------
+class Site
+{
+    public void login(int age) {
+        System.out.println("welcome to your home !!! ");
+        if (age>=70)
+            home();
+        else
+        {
+            throw new ArithmeticException();
+        }
+        System.out.println("thank you for visit....");
+    }
+    private void home() {
+        System.out.println("welcome to your second home !!!");
+    }
+}
+class MainClass{
+    public static void main(String args[]){
+        System.out.println("program started !!!");
+        Site s = new Site();
+        try {
+            s.login(87);
+        }catch(ArithmeticException e){
+            System.out.println(e);
+        }
+        System.out.println("program ended....");
+    }
+}
+
+//program started !!!
+//welcome to your home !!!
+//welcome to your second home !!!
+//thank you for visit....
+//program ended....
+
+/*
+class Site
+{
+    public void login(int age) {
+        System.out.println("welcome to your home !!! ");
+        if (age>=70)
+            home();
+        else
+        {
+            throw new ArithmeticException();
+        }
+        System.out.println("thank you for visit....");
+    }
+    private void home() {
+        System.out.println("welcome to your second home !!!");
+    }
+}
+class MainClass{
+    public static void main(String args[]){
+        System.out.println("program started !!!");
+        Site s = new Site();
+        try {
+            s.login(50);
+        }catch(ArithmeticException e){
+            System.out.println(e);
+        }
+        System.out.println("program ended....");
+    }
+}
+
+//program started !!!
+//welcome to your home !!!
+//java.lang.ArithmeticException
+//program ended....
+-----------------------------------
+
+class Site
+{
+    public void login(int age) {
+        System.out.println("welcome to your home !!! ");
+        if (age>=70)
+            home();
+        else
+        {
+            throw new ArithmeticException();
+        }
+        System.out.println("thank you for visit....");
+       }
+        private void home() {
+          System.out.println("welcome to your second home !!!");
+    }
+}
+class MainClass{
+    public static void main(String args[]){
+        System.out.println("program started !!!");
+        Site s = new Site();
+        s.login(50);
+        System.out.println("program ended....");
+    }
+}
+//program started !!!
+//welcome to your home !!!
+//Exception in thread "main" java.lang.ArithmeticException
+//	at Site.login(Main.java:9)
+//	at MainClass.main(Main.java:21)
+
+//throw keyword - stop execution of application (use -within block --with unchecked exception)
+*/
+
+---------------------------------------------
+class Site
+{
+    public void login(int age) throws NullPointerException,NumberFormatException, IllegalAccessException
+    {
+        System.out.println("welcome to your home !!! ");
+        if (age>=70)
+            home();
+        else
+        {
+            throw new ArithmeticException();
+        }
+        System.out.println("thank you for visit....");
+    }
+    private void home() {
+        System.out.println("welcome to your second home !!!");
+    }
+}
+class MainClass{
+    public static void main(String args[]){
+        System.out.println("program started !!!");
+        Site s = new Site();
+        try {
+            s.login(87);
+        }catch(ArithmeticException | NullPointerException | NumberFormatException | IllegalAccessException e){
+            System.out.println(e);
+        }
+        System.out.println("program ended....");
+    }
+}
+//program started !!!
+//welcome to your home !!!
+//welcome to your second home !!!
+//thank you for visit....
+//program ended....
+
+//Throws - declare multiple exception as per requirement -to create unreported methods -- used with methods
