@@ -419,6 +419,178 @@ public static List<Employee> employeeRowMapper(ResultSet rs) throws SQLException
 	return list;
 }
 }
+__________________________________________________
+
+// App  (Main file)
+package com.demo;
+
+import java.util.List;
+
+import com.Dao.EmployeeDao;
+import com.model.Employee;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+      EmployeeDao ed = new EmployeeDao();
+    
+      /*/*
+      Employee e = new Employee();
+      e.setName("Gangubai ramteke");
+      e.setDesignation("UI Developer");
+      e.setCompany("cts");
+      e.setSalary(8000.0);
+      System.out.println(ed.insertEmployee(e));
+      */
+      /*
+
+      //to operate on huge data
+      
+      String[] companies = {
+	            "Daikibo Industrials", "TechCorp", "Innovate Ltd", "Global Solutions", 
+	            "NextGen Systems", "AlphaTech", "CyberDynamics", "Quantum Innovations", 
+	            "BlueOcean Enterprises", "Skyline Technologies", "Vertex Solutions", 
+	            "Fusion Systems", "Zenith Corp", "Pioneer Industries", "Summit Software", 
+	            "Evergreen Tech", "NeuralSoft", "CloudMinds", "Infinity Technologies", 
+	            "Stellar Enterprises", "OmniTech", "Hyperion Labs", "Nexus Systems",
+	            "Astro Innovations", "Titan Software", "NovaTech", "Synergy Solutions",
+	            "PrimeWave Technologies", "Velocity Corp", "Evolve Industries",
+	            "EcoVision Ltd", "TurboSoft", "DataSphere", "Apex Technologies",
+	            "Stratos Innovations", "CyberX Labs", "Quantum Nexus", "SmartGrid Solutions",
+	            "Horizon Industries", "Orion Technologies", "Lambda Systems", "NeonTech",
+	            "Polaris Enterprises", "CloudZen", "ByteForce", "Vortex Solutions",
+	            "NeoWave Tech", "Solaris Innovations", "DeepMind Systems", "HyperSync",
+	            "Catalyst Technologies", "Visionary Software", "Elevate Solutions",
+	            "Omicron Dynamics", "Adaptive Systems", "Metrix Corp", "TerraSoft",
+	            "Infinity AI", "Vanguard Enterprises", "SynerTech", "OmniData Corp",
+	            "NeuraLogic", "Quantum Pulse", "CyberForge", "StrataTech", "OmegaSoft"
+	        };
+      String[] designations = {
+	            "Software Engineer", "Senior Software Engineer", "Lead Developer", 
+	            "Full Stack Developer", "Backend Developer", "Frontend Developer", 
+	            "DevOps Engineer", "Cloud Engineer", "Data Engineer", "Machine Learning Engineer",
+	            "AI Engineer", "Cybersecurity Analyst", "Security Engineer", "Penetration Tester",
+	            "IT Security Specialist", "System Administrator", "Network Engineer",
+	            "Database Administrator", "IT Support Specialist", "Help Desk Technician",
+	            "Solutions Architect", "Technical Architect", "Software Architect",
+	            "IT Project Manager", "Scrum Master", "Product Manager",
+	            "Quality Assurance Engineer", "Test Automation Engineer", "SRE (Site Reliability Engineer)",
+	            "Blockchain Developer", "Embedded Systems Engineer", "IoT Developer",
+	            "Mobile App Developer", "Android Developer", "iOS Developer",
+	            "Game Developer", "VR/AR Developer", "UI/UX Designer",
+	            "Business Analyst", "Data Analyst", "Data Scientist",
+	            "BI (Business Intelligence) Developer", "AI Researcher",
+	            "Technical Support Engineer", "IT Consultant", "Chief Technology Officer (CTO)",
+	            "Chief Information Officer (CIO)", "Cybersecurity Consultant", "Software Development Manager"
+	        };
+     
+      Random r = new Random();  //give random values
+      for(int i=1;i<=1000;i++) {
+    /*	System.out.println(r.nextInt(20));
+    System.out.println(companies[r.nextInt(companies.length)]);
+    System.out.println(designations[r.nextInt(designations.length)]);   
+    *//*
+    	  Employee e = new Employee();
+    	  e.setCompany(companies[r.nextInt(companies.length)]);
+    	  e.setDesignation(designations[r.nextInt(designations.length)]);
+    	  e.setSalary(r.nextInt(125)*10000.0);
+    	  StringBuilder sb = new StringBuilder();
+    	  for (int j=1;j<=15;j++)
+    	  
+    		  sb.append((char)(r.nextInt(26)+65));
+    	  e.setName(sb.toString()); 
+    	  System.out.println(ed.insertEmployee(e));
+    	  
+    //-------deletEmployeeById----------
+     /*
+      int check=  ed.deletEmployeeById(26);
+     System.out.println(check);
+    
+      //-------findEmployeeById--------
+      
+     Employee e = ed.findEmployeeById(22);
+     System.out.println(e);   //Employee [id=22, name=NVTWSLFGCNGXFDD, designation=VR/AR Developer, Company=Solaris Innovations, salary=490000.0]
+ 
+      //---------findAllEmployee--------------
+      List<Employee> list = ed.findAllEmployee();
+      for(Employee e : list)
+    	  System.out.println(e);
+    //------------updateEmployee-------------
+   
+      Employee e = ed.findEmployeeById(2);
+      e.setName("Komal");
+      e.setDesignation("Tester");
+      e.setCompany("Google");
+      e.setSalary(400000);
+      System.out.println(ed.updateEmployee(e));
+      
+      //-------findEmployeeSalaryLessThan----------
+      List<Employee> list=ed.findEmployeeSalaryLessThan(40000);
+      for(Employee e:list)
+      	System.out.println(e);
+      	/*
+      //-------findEmployeeSalaryBetween--------------
+      List<Employee> list=ed.findEmployeeSalaryBetween(1000,30000);
+      for(Employee e1:list)
+      	System.out.println(e1);
+      	
+      //---------findHighestSalary--------
+      double salary = ed.findHighestSalary();
+      System.out.println(salary);
+    
+      //------findLowestSalary-----------
+      double salary = ed.findLowestSalary();
+      System.out.println(salary);
+     
+      //--------findAverageSalary--------------
+      
+      double salary = ed.findAverageSalary();
+      System.out.println(salary);
+      
+       
+     
+      //---------findHighestSalaryEmployee----------
+      List<Employee> list = ed.findHighestSalaryEmployee();
+      for(Employee e : list)
+    	  System.out.println(e); //Employee [id=947, name=DDWXNSWCGEGAIBM, designation=Penetration Tester, Company=NextGen Systems, salary=1240000.0]
+   
+      
+      //----------findSecondHighestSalaryEmployee----------
+      List<Employee> list = ed.findSecondHighestSalaryEmployee();
+      for(Employee e : list)
+    	  System.out.println(e);  //Employee [id=946, name=ERZUTJAQZHEUMXT, designation=Game Developer, Company=Titan Software, salary=1230000.0]
+   
+      //---------findthirdHighestSalaryEmployee-------------
+      List<Employee> list = ed.findthirdHighestSalaryEmployee();
+      for(Employee e : list)
+    	  System.out.println(e); 
+      
+      //----------findHighestSalaryBelongsToCompany---------------
+      List<Employee> list = ed.findHighestSalaryBelongsToCompany();
+      for(Employee e : list)
+    	  System.out.println(e);   //Employee [id=281, name=RIOSMEJENZVXQGY, designation=UI/UX Designer, Company=CloudMinds, salary=1220000.0]
+  
+      //--------findHighestSalaryBelongsToDesignation-----------
+      List<Employee> list = ed.findHighestSalaryBelongsToDesignation();
+      for(Employee e : list)
+    	  System.out.println(e);   //Employee [id=946, name=ERZUTJAQZHEUMXT, designation=Game Developer, Company=Titan Software, salary=1230000.0]
+
+     
+      //-------findHighestSalaryBelongsToDesignation----------
+      List<Employee> list = ed.findHighestSalaryBelongsToCompanyUI("Velocity Corp");
+      for(Employee e : list)
+    	  System.out.println(e);  //Employee [id=528, name=FLECEZQXTJQVLOD, designation=AI Researcher, Company=Velocity Corp, salary=1240000.0]
+
+     */
+      //---------findSecondHighestSalaryBelongsToCompanyUI-------------
+      	List<Employee> list = ed.findSecondHighestSalaryBelongsToCompanyUI("Quantum Nexus");
+      	 for(Employee e : list)
+      		 System.out.println(e);   //Employee [id=982, name=FLHPBRQPDPIWNQY, designation=Software Engineer, Company=Quantum Nexus, salary=1140000.0]
+
+     }
+   }
+
 
 
 
