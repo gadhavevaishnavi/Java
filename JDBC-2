@@ -1,0 +1,341 @@
+//EmployeeDao
+------------
+package com.Dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.model.Employee;
+import com.util.MyDatabase;
+
+public class EmployeeDao {
+	
+//---------insertEmployee-----------
+	
+	public int insertEmployee(Employee e)
+	{
+		int result =0;
+		
+		String sql ="insert into Employee(name,designation,company,salary)values(?,?,?,?)";
+		
+		try (
+			Connection con = MyDatabase.createConnection();
+			PreparedStatement pst = con.prepareStatement(sql);)
+		{
+			pst.setString(1, e.getName());
+			pst.setString(2, e.getDesignation());
+			pst.setString(3, e.getCompany());
+			pst.setDouble(4, e.getSalary());
+			result = pst.executeUpdate();
+			
+		}catch(SQLException e1)
+		{
+		 e1.printStackTrace();
+		}
+			return result;
+		}
+	//-----------deletEmployeeById-----------
+	
+public int deletEmployeeById(int id)
+{
+	int result =0;
+	String sql = "delete from employee where id=?";
+	try (Connection con = MyDatabase.createConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
+		pst.setInt(1, id);
+		result = pst.executeUpdate();
+	}catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return result;
+}
+	
+//-------------findEmployeeById-----------
+
+public Employee findEmployeeById(int id)
+{
+	List<Employee> list = new ArrayList();
+	//int result= 0;
+	String sql= "select id,name,designation,company,salary from employee where id=?";
+	 try(Connection con = MyDatabase.createConnection();
+			 PreparedStatement pst = con.prepareStatement(sql);) {
+		 pst.setInt(1, id);
+		 
+		ResultSet rs = pst.executeQuery();
+		list.addAll (MyDatabase.employeeRowMapper(rs));
+		
+	} catch (SQLException e) {
+	e.printStackTrace();
+	}
+	return (list.isEmpty()?null:list.get(0));
+}
+
+//--------findAllEmployee--------------
+public List<Employee> findAllEmployee()
+{
+	List<Employee> list = new ArrayList();
+	String sql = "select id ,name,designation,company,salary from employee";
+	try (Connection con = MyDatabase.createConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();){
+		list.addAll(MyDatabase.employeeRowMapper(rs));
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+return list;
+}
+
+//-----------updateEmployee-------------------
+public int updateEmployee(Employee e) {
+	int result =0;
+	String sql1="Update Employee set name=?,designation=?,company=?,salary=? where id=?";
+	try(Connection con=MyDatabase.createConnection();
+			PreparedStatement pst=con.prepareStatement(sql1);) {
+		pst.setString(1, e.getName());
+		pst.setString(2, e.getDesignation());
+		pst.setString(3, e.getCompany());
+		pst.setDouble(4, e.getSalary());
+		pst.setInt(5, e.getId());
+		result=pst.executeUpdate();
+	} catch (SQLException e3) {
+		// TODO: handle exception
+		e3.printStackTrace();
+	}
+	
+	return result;
+}
+
+//----findEmployeeSalaryLessThan-------------
+public List<Employee> findEmployeeSalaryLessThan(double salary) {
+	List<Employee> list=new ArrayList();
+	String sql3="select * from employee where salary<=?";
+	try(Connection con=MyDatabase.createConnection();
+			PreparedStatement pst=con.prepareStatement(sql3);
+			) {
+			pst.setDouble(1, salary);
+			ResultSet rs=pst.executeQuery();
+			list.addAll(MyDatabase.employeeRowMapper(rs));
+	} catch (SQLException e2) {
+	
+		e2.printStackTrace();
+	}
+	return list;
+}
+
+//----------findEmployeeSalaryBetween-----------------
+public List<Employee> findEmployeeSalaryBetween(double low,double high){
+	List<Employee> list=new ArrayList();
+	String sql="select * from employee where salary between ? and ?";
+	try(Connection con=MyDatabase.createConnection();
+		PreparedStatement pst=con.prepareStatement(sql);
+			) {
+		pst.setDouble(1, low);
+		pst.setDouble(2, high);
+		ResultSet rs=pst.executeQuery();
+		list.addAll(MyDatabase.employeeRowMapper(rs));
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	return list;
+}
+
+//-----------findEmployeeBySalaryNotBetween------------
+public List<Employee> findEmployeeBySalaryNotBetween(double low , double high) 
+{
+List<Employee> list = new ArrayList();
+String sql = "select id,name,designation,company,salary from employee where salary between ? and ? ";
+try (Connection con = MyDatabase.createConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
+	pst.setDouble(1, low);
+	pst.setDouble(2, high);
+	ResultSet rs = pst.executeQuery();
+}catch(SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//-----------findHighestSalary----------------
+public double findHighestSalary()
+{
+ double salary =0;
+ String sql = "select * from employee where salary =(select max(salary) as salary from employee)";
+ try (Connection con = MyDatabase.createConnection();
+		 PreparedStatement pst = con.prepareStatement(sql);
+		 ResultSet rs = pst.executeQuery();)
+ {
+	 while(rs.next())
+		 salary =rs.getDouble("salary");				
+ }catch (SQLException e) {
+	 e.printStackTrace();
+}
+  return salary;
+}	
+
+//--------findLowestSalary-------------
+public double findLowestSalary()
+{
+ double salary =0;
+ String sql = "select min(salary) as Minsalary from employee";
+ try (Connection con = MyDatabase.createConnection();
+		 PreparedStatement pst = con.prepareStatement(sql);
+		 ResultSet rs = pst.executeQuery();)
+ {
+	 while(rs.next())
+		 salary =rs.getDouble("Minsalary");				
+ }catch (SQLException e) {
+	 e.printStackTrace();
+}
+  return salary;
+}	
+
+//---------findAverageSalary---------
+public double findAverageSalary()
+{
+ double salary =0;
+ String sql = "select avg(salary) as avgsalary from employee";
+ try (Connection con = MyDatabase.createConnection();
+		 PreparedStatement pst = con.prepareStatement(sql);
+		 ResultSet rs = pst.executeQuery();)
+ {
+	 while(rs.next())
+		 salary =rs.getDouble("avgsalary");				
+ }catch (SQLException e) {
+	 e.printStackTrace();
+}
+  return salary;
+}	
+
+//by using sub query
+// ----------findHighestSalaryEmployee----------------
+public List<Employee> findHighestSalaryEmployee()
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary =(select max(salary) as salary from employee)";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();){
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//---------findSecondHighestSalaryEmployee--------
+public List<Employee> findSecondHighestSalaryEmployee()
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary =(select max(salary) from employee where salary <(select max(salary) as salary from employee))";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();){
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//------findthirdHighestSalaryEmployee------------
+public List<Employee> findthirdHighestSalaryEmployee()
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary =(select max(salary) from employee where salary < (select max(salary) from employee where salary <(select max(salary) as salary from employee)))";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();){
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//--------findHighestSalaryBelongsToCompany---------------
+public List<Employee> findHighestSalaryBelongsToCompany()
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary =(select max(salary) as salary from employee where company ='CloudMinds') and company ='CloudMinds' ";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();){
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//---------findHighestSalaryBelongsToDesignation-------------
+public List<Employee> findHighestSalaryBelongsToDesignation()
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary =(select max(salary) as salary from employee where designation ='Game Developer') and designation ='Game Developer' ";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();){
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//---------findHighestSalaryBelongsToCompanyUI---------
+public List<Employee> findHighestSalaryBelongsToCompanyUI(String s)
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary =(select max(salary) as salary from employee where company =?) and company =?";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		){
+	pst.setString(1, s);
+	pst.setString(2, s);
+	ResultSet rs = pst.executeQuery();
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+
+//
+public List<Employee> findSecondHighestSalaryBelongsToCompanyUI(String s)
+{
+List<Employee> list = new ArrayList();
+String sql = "select * from employee where salary=(select max(salary) from employee where salary<(select max(salary)from employee where company=?) and company=?) and company=? ";
+try (Connection con = MyDatabase.createConnection(); 
+		PreparedStatement pst = con.prepareStatement(sql);
+		){
+	pst.setString(1, s);
+	pst.setString(2, s);
+	pst.setString(3, s);
+	ResultSet rs = pst.executeQuery();
+	list.addAll(MyDatabase.employeeRowMapper(rs));
+}catch (SQLException e) {
+	e.printStackTrace();
+}
+return list;
+}
+}
+____________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
