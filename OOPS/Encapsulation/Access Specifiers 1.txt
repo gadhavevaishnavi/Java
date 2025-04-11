@@ -1,0 +1,101 @@
+Types of Access Specifiers
+Java provides four access specifiers, each with distinct visibility rules:
+
+Public:
+Description: Any class, method, or variable declared as public can be accessed from any part of the program, regardless of the package.
+Scope: No restrictions; accessible everywhere.
+Example:
+java
+Wrap
+Copy
+public class MyClass {
+    public void myMethod() {
+        // method body
+    }
+}
+Here, myMethod can be called from any class in any package.
+Private:
+Description: A private member can only be accessed within the same class. It cannot be accessed from outside the class, even from subclasses.
+Scope: Restricted to the same class.
+Example:
+java
+Wrap
+Copy
+class MyClass {
+    private int myVariable;
+    public void myMethod() {
+        myVariable = 10; // allowed
+    }
+}
+class AnotherClass {
+    public void someMethod(MyClass obj) {
+        obj.myVariable = 20; // not allowed, compilation error
+    }
+}
+In this case, AnotherClass cannot access myVariable directly; it can only be accessed within MyClass.
+Protected:
+Description: A protected member can be accessed within the same package and by subclasses in other packages. It is useful for inheritance, allowing controlled access to subclasses.
+Scope: Same package and subclasses, including those in different packages.
+Example:
+java
+Wrap
+Copy
+package com.example;
+public class ParentClass {
+    protected void protectedMethod() {
+        // method body
+    }
+}
+package com.example.sub;
+import com.example.ParentClass;
+public class ChildClass extends ParentClass {
+    public void childMethod() {
+        protectedMethod(); // allowed, since it's a subclass
+    }
+}
+package com.example.other;
+import com.example.ParentClass;
+public class OtherClass {
+    public void someMethod(ParentClass obj) {
+        obj.protectedMethod(); // not allowed, compilation error
+    }
+}
+Here, ChildClass can access protectedMethod, but OtherClass cannot, as it's not a subclass and in a different package.
+Default (No Specifier):
+Description: When no access specifier is provided, it is considered default, also known as package-private. It allows access within the same package but not from outside.
+Scope: Same package only.
+Example:
+java
+Wrap
+Copy
+package com.example;
+class MyClass {
+    int defaultVariable; // default access
+    void defaultMethod() {
+        // method body
+    }
+}
+package com.example;
+public class AnotherClass {
+    public void someMethod(MyClass obj) {
+        obj.defaultVariable = 10; // allowed, same package
+        obj.defaultMethod(); // allowed, same package
+    }
+}
+package com.example.other;
+import com.example.MyClass;
+public class OutsideClass {
+    public void someMethod(MyClass obj) {
+        obj.defaultVariable = 20; // not allowed, different package
+        obj.defaultMethod(); // not allowed, different package
+    }
+}
+In this example, OutsideClass cannot access defaultVariable or defaultMethod due to the package restriction.
+Scope and Accessibility Table
+To clarify the accessibility of each access specifier, the following table summarizes their scope from different contexts:
+
+Access Specifier	Same Class	Same Package	Subclass (Same Package)	Subclass (Different Package)	Different Package (Non-Subclass)
+Public	Yes	Yes	Yes	Yes	Yes
+Protected	Yes	Yes	Yes	Yes	No
+Default	Yes	Yes	Yes	No	No
+Private	Yes	No	No	No

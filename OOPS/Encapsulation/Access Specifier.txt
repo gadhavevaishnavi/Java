@@ -1,0 +1,54 @@
+package com.example.parent;
+
+// Parent class with different access specifiers
+public class Parent {
+    public int publicVar = 1;         // Accessible everywhere
+    protected int protectedVar = 2;   // Accessible in package + subclasses
+    int defaultVar = 3;               // Accessible only in package
+    private int privateVar = 4;       // Accessible only in this class
+
+    public void display() {
+        // All variables are accessible within the same class
+        System.out.println("Public: " + publicVar);
+        System.out.println("Protected: " + protectedVar);
+        System.out.println("Default: " + defaultVar);
+        System.out.println("Private: " + privateVar);
+    }
+}
+
+
+
+
+package com.example.child;
+
+import com.example.parent.Parent;
+
+// Child class extending Parent
+public class Child extends Parent {
+    public void testAccess() {
+        System.out.println("From Child class:");
+        System.out.println("Public: " + publicVar);     // Works fine
+        System.out.println("Protected: " + protectedVar); // Works via inheritance
+        // System.out.println("Default: " + defaultVar); // Error: not visible
+        // System.out.println("Private: " + privateVar); // Error: not visible
+    }
+}
+
+// Another class in a different package
+class Outsider {
+    public void tryAccess() {
+        Parent p = new Parent();
+        System.out.println("From Outsider class:");
+        System.out.println("Public: " + p.publicVar);   // Works fine
+        // System.out.println("Protected: " + p.protectedVar); // Error: not visible
+        // System.out.println("Default: " + p.defaultVar);     // Error: not visible
+        // System.out.println("Private: " + p.privateVar);     // Error: not visible
+    }
+}
+
+
+Access Specifier	Same Class	Same Package	Subclass (Different Package)	Outside (Different Package)
+public			Yes			Yes		Yes				Yes
+protected		Yes			Yes		Yes (via inheritance)		No
+default			Yes			Yes		No				No
+private			Yes			No		No				No
