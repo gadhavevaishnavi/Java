@@ -1,0 +1,42 @@
+ Build a web scraping application
+
+
+Web scraping is the process of extracting data from websites. In this project, you'll create a program that can scrape data from multiple websites and store it in a database for later use. This project will help you improve your knowledge of networking, APIs, and databases.
+
+Some potential features to include in your web scraping application are:
+
+User input for specifying which websites to scrape
+Data cleaning and formatting for consistent storage
+Scheduling options for regular updates or automatic scrapes
+
+
+Create a job portal website
+A job portal website is a platform where employers can post job listings, and applicants can apply for them. In this project, you'll develop a website that allows users to create accounts, search for jobs, and submit applications. This project will help you practice web development skills like HTML, CSS, and JavaScript.
+
+Some features you can include in your job portal website are:
+
+Job listing search with filters (e.g., location, industry)
+User profile creation and management
+Resume submission for applications
+You can model your job portal interface after these established job portal sites:
+
+
+
+Smart City Project (City Guide Project)
+The smart city project offers users detailed information about local attractions, restaurants, and services in a city.
+
+Key Features
+
+Location-based services
+Route suggestions
+City-specific data (weather, landmarks, etc.)
+Skills Gained
+
+Working with APIs
+Handling geolocation data
+Map integration
+Applications
+
+City guide apps
+Tourism and navigation tools
+Tools and Tech: Java, Google Maps API
